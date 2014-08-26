@@ -1,0 +1,4 @@
+
+t(X) :- &mongo_query["test.foo","{}","rdfs:subPropertyOf.0.@id"](X).
+
+

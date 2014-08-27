@@ -1,4 +1,4 @@
 
 t(X) :- &mongo_query["test.foo","{}","rdfs:subPropertyOf.0.@id"](X).
 
-
+r(X,Y):- &mongo_query["tutorial.persons", "{age:{$lt:30}}", "name;age"](X,Y).

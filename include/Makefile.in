@@ -278,7 +278,8 @@ top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = gnu
 noinst_HEADERS = MongoPlugin.h \
 	 	 MongoQueryAtom.h \
-	 	 MongoInsertAtom.h
+	 	 MongoInsertAtom.h \
+	 	 ConfigFile.h
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am

@@ -13,6 +13,9 @@
 #endif /* HAVE_CONFIG_H */
 
 #include "MongoQueryAtom.h"
+
+#include "ConfigFile.h"
+
 #include <dlvhex2/Registry.h>
 #include <dlvhex2/Term.h>
 
@@ -46,11 +49,14 @@ namespace dlvhex {
             Registry &registry = *getRegistry();
             
             mongo::DBClientConnection c;
+            ConfigFile cfg("include/config.cfg");
+            std::string connection = cfg.getValueOfKey("CONNECTION_STRING");
+            
 
             // try the connection of the mongo db at first               
             try {
                 
-                 c.connect("localhost");
+                 c.connect(connection);
                 
                 } catch (const mongo::DBException &e) {
                 	throw PluginError("MongoDB is not on, or connection breaks!");

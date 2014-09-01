@@ -1160,7 +1160,8 @@ MongoPlugin.lo: MongoPlugin.cpp /usr/include/stdc-predef.h \
  /usr/local/include/mongo/geo/parser-impl.h \
  /usr/local/include/mongo/version.h \
  /usr/local/include/mongo/client/undef_macros.h \
- ../include/MongoInsertAtom.h
+ ../include/MongoInsertAtom.h ../include/MongoArrayAtom.h \
+ ../include/MongoJSONAtom.h
 
 /usr/include/stdc-predef.h:
 
@@ -3699,3 +3700,7 @@ MongoPlugin.lo: MongoPlugin.cpp /usr/include/stdc-predef.h \
 /usr/local/include/mongo/client/undef_macros.h:
 
 ../include/MongoInsertAtom.h:
+
+../include/MongoArrayAtom.h:
+
+../include/MongoJSONAtom.h:

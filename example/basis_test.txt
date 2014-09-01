@@ -1,0 +1,7 @@
+
+t(X) :- &mongo_query["smart.basis","{}","bodystates"](X).
+rest(Y1,Y2) :- &mongo_array[X](Y1,Y2), t(X).
+
+element(Y3, Y4, Y1) :- &mongo_array[Y2](Y3,Y4), rest(Y1,Y2), Y1 = 10.
+
+test(Y) :- &mongo_array["[1,'ar.0']"](I,Y).

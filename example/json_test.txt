@@ -1,0 +1,7 @@
+
+test(X,Y) :- &mongo_json["{'name':'Josh',age:22.01,'birthday':new Date(1419589333000),grades:[90,99,29]}"](X,Y).
+
+% This is not working, since some of the Y returned are not array.
+% array(I,V) :- &mongo_array[Y](I,V),test(X,Y), X = "grades".
+
+array(I,V) :- &mongo_array[Y](I,V),test("grades",Y).

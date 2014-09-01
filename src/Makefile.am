@@ -11,6 +11,8 @@ AM_CPPFLAGS= -I$(top_srcdir)/include \
 libdlvhexplugin_mongo_la_SOURCES = MongoPlugin.cpp \
 				   MongoQueryAtom.cpp \
 				   MongoInsertAtom.cpp \
+				   MongoArrayAtom.cpp \
+				   MongoJSONAtom.cpp \
 				   ConfigFile.cpp
 
 libdlvhexplugin_mongo_la_LDFLAGS =-version-info="" -avoid-version -module $(MONGO_LIBS)

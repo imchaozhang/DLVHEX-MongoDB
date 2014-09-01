@@ -124,7 +124,8 @@ am__installdirs = "$(DESTDIR)$(plugindir)"
 LTLIBRARIES = $(plugin_LTLIBRARIES)
 libdlvhexplugin_mongo_la_LIBADD =
 am_libdlvhexplugin_mongo_la_OBJECTS = MongoPlugin.lo MongoQueryAtom.lo \
-	MongoInsertAtom.lo ConfigFile.lo
+	MongoInsertAtom.lo MongoArrayAtom.lo MongoJSONAtom.lo \
+	ConfigFile.lo
 libdlvhexplugin_mongo_la_OBJECTS =  \
 	$(am_libdlvhexplugin_mongo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
@@ -348,6 +349,8 @@ AM_CPPFLAGS = -I$(top_srcdir)/include \
 libdlvhexplugin_mongo_la_SOURCES = MongoPlugin.cpp \
 				   MongoQueryAtom.cpp \
 				   MongoInsertAtom.cpp \
+				   MongoArrayAtom.cpp \
+				   MongoJSONAtom.cpp \
 				   ConfigFile.cpp
 
 libdlvhexplugin_mongo_la_LDFLAGS = -version-info="" -avoid-version -module $(MONGO_LIBS)
@@ -431,7 +434,9 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/ConfigFile.Plo
+include ./$(DEPDIR)/MongoArrayAtom.Plo
 include ./$(DEPDIR)/MongoInsertAtom.Plo
+include ./$(DEPDIR)/MongoJSONAtom.Plo
 include ./$(DEPDIR)/MongoPlugin.Plo
 include ./$(DEPDIR)/MongoQueryAtom.Plo
 

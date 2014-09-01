@@ -29,6 +29,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/algorithm/string/replace.hpp>
 
 using namespace std;
 using namespace mongo;
@@ -41,7 +42,7 @@ namespace dlvhex {
             addInputConstant();
             addInputConstant();
             addInputConstant();
-            setOutputArity(10);
+            setOutputArity(20);
         }
 
         void
@@ -126,8 +127,11 @@ namespace dlvhex {
                             if (p.getFieldDotted(output_v[i]).isNumber()) {
                                 
                                 ostringstream convert;
-                                convert << p.getFieldDotted(output_v[i]).number();
+                                convert << p.getFieldDotted(output_v[i]).toString(false);
                                 in = convert.str();
+                                // if it is int, remove the last two digits
+                                if(in.size()>=3 && in.substr(in.size()-2,2) == ".0")
+                                in = in.substr(0, in.size()-2);
 
                             } 
                             else if (p.getFieldDotted(output_v[i]).isBoolean()) {
@@ -162,10 +166,15 @@ namespace dlvhex {
                                 
         			in = p.getFieldDotted(output_v[i]).toString(false);
         			
-        			in.erase(
-                    			remove(in.begin(), in.end(), '\"'),
-                   		 	in.end()
-                    		        );    
+        			//in.erase(
+                    		//	remove(in.begin(), in.end(), '\"'),
+                   		// 	in.end()
+                    		//        );    
+       				boost::replace_all(in,"\"","'");       				
+                    		if(in.substr(0,1)=="'" && in.substr(in.size()-1,1) == "'"){
+                    		
+                       			boost::replace_all(in,"'",""); 
+                    		}         				    				
        				
        				}
                             

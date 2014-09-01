@@ -12,6 +12,8 @@
 #include "MongoPlugin.h"
 #include "MongoQueryAtom.h"
 #include "MongoInsertAtom.h"
+#include "MongoArrayAtom.h"
+#include "MongoJSONAtom.h"
 #include <dlvhex2/PluginInterface.h>
 #include <dlvhex2/Logger.h>
 
@@ -38,6 +40,8 @@ namespace dlvhex {
 
           ret.push_back(PluginAtomPtr(new MongoQueryAtom, PluginPtrDeleter<PluginAtom>()));
           ret.push_back(PluginAtomPtr(new MongoInsertAtom, PluginPtrDeleter<PluginAtom>()));
+          ret.push_back(PluginAtomPtr(new MongoArrayAtom, PluginPtrDeleter<PluginAtom>()));
+          ret.push_back(PluginAtomPtr(new MongoJSONAtom, PluginPtrDeleter<PluginAtom>()));
 
           
           return ret;

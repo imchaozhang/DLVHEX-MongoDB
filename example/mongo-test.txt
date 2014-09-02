@@ -1,4 +1,8 @@
 
 t(X) :- &mongo_query["test.foo","{}","rdfs:subPropertyOf.0.@id"](X).
 
-r(X,Y):- &mongo_query["tutorial.persons", "{name:'Josh'}", "name;age"](X,Y).
+r(X):- &mongo_query["tutorial.persons", "{name:'Josh'}", "{}"](X).
+
+s(Y) :- &mongo_json[T](X,Y), r(T), X="grades".
+
+w(X1,Y1) :- &mongo_array[T1](X1,Y1), s(T1).

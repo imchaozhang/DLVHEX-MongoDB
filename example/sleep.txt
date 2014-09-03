@@ -1,0 +1,8 @@
+
+test(X) :- &mongo_query["smart.basis","{'content.activities.type':'sleep', 'content.activities.end_time.timestamp':{$gt:1409641200}}","content.activities"](X).
+
+sleep_array(I,C) :- &mongo_array[X](I,C), test(X).
+
+sleep_time(I,K,V,K1,V1) :- sleep_array(I,C), 
+		       &mongo_json[C,"actual_seconds;end_time.timestamp"](K,V,K1,V1).
+			

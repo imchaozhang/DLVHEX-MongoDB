@@ -39,9 +39,7 @@ namespace dlvhex {
 
         MongoQueryAtom::MongoQueryAtom() : PluginAtom("mongo_query", 1) {
 
-            addInputConstant();
-            addInputConstant();
-            addInputConstant();
+	    addInputTuple();
             setOutputArity(20);
         }
 
@@ -61,6 +59,14 @@ namespace dlvhex {
 
             } catch (const mongo::DBException &e) {
                 throw PluginError("MongoDB is not on, or connection breaks!");
+            }
+            
+            int arity = query.input.size();
+            
+            if(arity < 3) {
+            
+            	throw PluginError("The input tuple should have 3 parameters at least");
+            
             }
 
 
@@ -87,6 +93,47 @@ namespace dlvhex {
             std::string s_dbc = dbc.getUnquotedString();
             std::string s_jpattern = jpattern.getUnquotedString();
             std::string s_output = output.getUnquotedString();
+
+
+	    for (int i = 3; i < arity; i++) {
+	    
+	    	ID id_input = query.input[i];
+	    	std:stringstream value_input;
+	    	
+	    	
+                if (id_input.isConstantTerm()) {
+
+                    const Term &term = registry.terms.getByID(id_input);
+                    value_input << term.getUnquotedString();
+
+                } else if (id_input.isIntegerTerm()) {
+
+                    value_input << id_input.address;
+
+                }
+                
+               else {
+               
+               	throw PluginError("Wrong input argument type for input" + (i+1));
+               
+               }
+               
+               
+               if(s_jpattern.find("$INPUT") == -1) {
+               
+               	throw PluginError("The query pattern needs to have \"$INPUT\" to represent the input element");
+               
+               
+               }
+               
+               else {
+               	// the $INPUT should be quoted with '' if it is an string
+               	boost::replace_first(s_jpattern,"$INPUT",value_input.str());
+                
+               }
+               
+	    
+	    }// end for
 
 
             if (s_output == "") {

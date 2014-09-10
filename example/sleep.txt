@@ -1,8 +1,8 @@
 
-test(X) :- &mongo_query["smart.basis","{'content.activities.type':'sleep', 'content.activities.end_time.timestamp':{$gt:1409641200}}","content.activities"](X).
+sleep_raw(X) :- &mongo_query["smart.basis","{'content.activities.type':'$INPUT', 'content.activities.start_time.timestamp':{$lt:$INPUT}}","content.activities",I,I2](X), I2= 1409122800, I = "sleep".
 
-sleep_array(I,C) :- &mongo_array[X](I,C), test(X).
+sleep_array(I,C) :- &mongo_array[X](I,C), sleep_raw(X).
 
-sleep_time(I,K,V,K1,V1) :- sleep_array(I,C), 
-		       &mongo_json[C,"actual_seconds;end_time.timestamp"](K,V,K1,V1).
+sleep_time(V,V1,V2) :- sleep_array(I,C), 
+		       	   &mongo_json[C,"actual_seconds;start_time.timestamp;end_time.timestamp"](K,V,K1,V1,K2,V2).
 			

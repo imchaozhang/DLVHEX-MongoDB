@@ -1,0 +1,5 @@
+busy_array(X) :- &mongo_query["smart.calendar", "{'calendars.email':'asureasoning@gmail.com'}", "calendars.busy"](X).
+
+busy_json(I,Y) :- &mongo_array[X](I,Y), busy_array(X).
+
+busy_time(S,E) :- &mongo_json[Y,"start;end"](SK,SV,EK,EV), busy_json(I,Y), &epoch[SV](S), &epoch[EV](E).

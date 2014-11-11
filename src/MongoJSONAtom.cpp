@@ -34,238 +34,239 @@ using namespace std;
 using namespace mongo;
 
 namespace dlvhex {
-    namespace mongo1 {
+	namespace mongo1 {
 
-        MongoJSONAtom::MongoJSONAtom() : PluginAtom("mongo_json", 1) {
+		MongoJSONAtom::MongoJSONAtom() : PluginAtom("mongo_json", 1) {
 
-            addInputConstant();
-            addInputConstant();
-            setOutputArity(20);
-        }
+			addInputConstant();
+			addInputConstant();
+			setOutputArity(20);
+		}
 
-        void
-        MongoJSONAtom::retrieve(const Query& query, Answer& answer) throw (PluginError) {
-            Registry &registry = *getRegistry();
+		void
+			MongoJSONAtom::retrieve(const Query& query, Answer& answer) throw (PluginError) {
+				Registry &registry = *getRegistry();
 
-            const Term& in_json = registry.terms.getByID(query.input[0]);
-            const Term& in_output = registry.terms.getByID(query.input[1]);
-            if (!in_json.isQuotedString()) {
-                throw PluginError("Wrong input argument type for input 1, need to be quoted string");
-            }
+				const Term& in_json = registry.terms.getByID(query.input[0]);
+				const Term& in_output = registry.terms.getByID(query.input[1]);
+				if (!in_json.isQuotedString()) {
+					throw PluginError("Wrong input argument type for input 1, need to be quoted string");
+				}
 
-            if (!in_output.isQuotedString()) {
-                throw PluginError("Wrong input argument type for input 2, need to be quoted string");
-            }
+				if (!in_output.isQuotedString()) {
+					throw PluginError("Wrong input argument type for input 2, need to be quoted string");
+				}
 
-            std::string s_json = in_json.getUnquotedString();
-            std::string s_output = in_output.getUnquotedString();
+				std::string s_json = in_json.getUnquotedString();
+				std::string s_output = in_output.getUnquotedString();
 
-            if (s_json.substr(0, 1) != "{" && s_json.substr(s_json.size() - 1, 1) != "}") {
+				if (s_json.substr(0, 1) != "{" && s_json.substr(s_json.size() - 1, 1) != "}") {
 
-                throw PluginError("The json input should be embedd in the \"{ }\" ");
+					throw PluginError("The json input should be embedd in the \"{ }\" ");
 
-            }
+				}
 
-            BSONObj b_json;
+				BSONObj b_json;
 
-            try {
-                b_json = fromjson(s_json);
+				try {
+					b_json = fromjson(s_json);
 
-            } catch (const mongo::DBException &e) {
+				} catch (const mongo::DBException &e) {
 
-                ostringstream out_catch;
-                out_catch << e.what();
-                throw PluginError("catch: " + out_catch.str());
+					ostringstream out_catch;
+					out_catch << e.what();
+					throw PluginError("catch: " + out_catch.str());
 
-            }
+				}
 
 
-            if (s_output == "{}" || s_output == "$ALL" || s_output == "") {
+				if (s_output == "{}" || s_output == "$ALL" || s_output == "") {
 
-                for (BSONObj::iterator i = b_json.begin(); i.more();) {
-                    Tuple out;
+					for (BSONObj::iterator i = b_json.begin(); i.more();) {
+						Tuple out;
 
-                    BSONElement e = i.next();
+						BSONElement e = i.next();
 
-                    std::string s_key = e.fieldName();
-                    std::string s_value;
+						std::string s_key = e.fieldName();
+						std::string s_value;
 
 
-                    if (e.type() == 2) { // type string
+						if (e.type() == 2) { // type string
 
-                        s_value = e.String();
+							s_value = e.String();
 
-                    }
-                    else if (e.isNumber()) { // type number
+						}
+						else if (e.isNumber()) { // type number
 
-                        ostringstream convert;
-                        convert << e.toString(false);
-                        s_value = convert.str();
-                        // if it is int, remove the last two digits
-                        if (s_value.size() >= 3 && s_value.substr(s_value.size() - 2, 2) == ".0")
-                            s_value = s_value.substr(0, s_value.size() - 2);
+							ostringstream convert;
+							convert << e.toString(false);
+							s_value = convert.str();
+							// if it is int, remove the last two digits
+							if (s_value.size() >= 3 && s_value.substr(s_value.size() - 2, 2) == ".0")
+								s_value = s_value.substr(0, s_value.size() - 2);
 
-                    }
-                    else if (e.type() == 9) { // type date
+						}
+						else if (e.type() == 9) { // type date
 
-                        ostringstream convert;
-                        convert << e.date();
-                        s_value = convert.str();
-                        if (s_value.size() == 13)
-                            // remove millionsecond to the epoch time stamp
-                            s_value = s_value.substr(0, 10);
+							ostringstream convert;
+							convert << e.date();
+							s_value = convert.str();
+							if (s_value.size() == 13)
+								// remove millionsecond to the epoch time stamp
+								s_value = s_value.substr(0, 10);
 
 
-                    }
-                    else if (e.isBoolean()) {
+						}
+						else if (e.isBoolean()) {
 
-                        ostringstream convert;
+							ostringstream convert;
 
-                        if (e.boolean() == true)
-                            s_value = "true";
-                        else
-                            s_value = "false";
+							if (e.boolean() == true)
+								s_value = "true";
+							else
+								s_value = "false";
 
-                    }
-                    else if (!e.eoo()) {
+						}
+						else if (!e.eoo()) {
 
-                        s_value = e.toString(false);
+							s_value = e.toString(false);
 
-                        boost::replace_all(s_value, "\"", "'");
+							boost::replace_all(s_value, "\"", "'");
 
-                        if (s_value.substr(0, 1) == "'" && s_value.substr(s_value.size() - 1, 1) == "'") {
+							if (s_value.substr(0, 1) == "'" && s_value.substr(s_value.size() - 1, 1) == "'") {
 
-                            boost::replace_all(s_value, "'", "");
+								boost::replace_all(s_value, "'", "");
 
-                        }
+							}
 
-                    }
-                    else {
+						}
+						else {
 
-                        s_value = "";
+							s_value = "";
 
-                    }
+						}
 
 
-                    try {
-                        int v;
-                        v = boost::lexical_cast<int>(s_value);
+						try {
+							int v;
+							v = boost::lexical_cast<int>(s_value);
 
-                        Term key_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_key + '"');
-                        Term value_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, s_value);
-                        out.push_back(registry.storeTerm(key_term));
-                        out.push_back(registry.storeTerm(value_term));
+							Term key_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_key + '"');
+							Term value_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, s_value);
+							out.push_back(registry.storeTerm(key_term));
+							out.push_back(registry.storeTerm(value_term));
 
-                    } catch (boost::bad_lexical_cast& e) {
+						} catch (boost::bad_lexical_cast& e) {
 
-                        Term key_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_key + '"');
-                        Term value_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_value + '"');
-                        out.push_back(registry.storeTerm(key_term));
-                        out.push_back(registry.storeTerm(value_term));
-                    }
+							Term key_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_key + '"');
+							Term value_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_value + '"');
+							out.push_back(registry.storeTerm(key_term));
+							out.push_back(registry.storeTerm(value_term));
+						}
 
 
 
-                    answer.get().push_back(out);
+						answer.get().push_back(out);
 
-                }//end for
-            }// end if 
+					}//end for
+				}// end if 
 
-            else {
+				else {
 
-                std::vector<string> output_v;
-                boost::split(output_v, s_output, boost::is_any_of(";"));
+					std::vector<string> output_v;
+					boost::split(output_v, s_output, boost::is_any_of(";"));
 
-		Tuple out;
-		
-                for (size_t i = 0; i < output_v.size(); i++) {
+					Tuple out;
 
-                    std::string s_key;
-                    std::string s_value;
-                    
-                    
-                    s_key = output_v[i];
-                    
-                    BSONElement e = b_json.getFieldDotted(output_v[i]);
+					for (size_t i = 0; i < output_v.size(); i++) {
 
-                    if (e.type() == 2) { // type string
+						std::string s_key;
+						std::string s_value;
 
-                        s_value = e.String();
 
-                    }
-                    else if (e.isNumber()) { // type number
+						s_key = output_v[i];
 
-                        ostringstream convert;
-                        convert << e.toString(false);
-                        s_value = convert.str();
-                        // if it is int, remove the last two digits
-                        if (s_value.size() >= 3 && s_value.substr(s_value.size() - 2, 2) == ".0")
-                            s_value = s_value.substr(0, s_value.size() - 2);
+						BSONElement e = b_json.getFieldDotted(output_v[i]);
 
-                    }
-                    else if (e.type() == 9) { // type date
+						if (e.type() == 2) { // type string
 
-                        ostringstream convert;
-                        convert << e.date();
-                        s_value = convert.str();
-                        if (s_value.size() == 13)
-                            // remove millionsecond to the epoch time stamp
-                            s_value = s_value.substr(0, 10);
+							s_value = e.String();
 
-                    }
-                    else if (e.isBoolean()) {
+						}
+						else if (e.isNumber()) { // type number
 
-                        ostringstream convert;
+							ostringstream convert;
+							convert << e.toString(false);
+							s_value = convert.str();
+							// if it is int, remove the last two digits
+							if (s_value.size() >= 3 && s_value.substr(s_value.size() - 2, 2) == ".0")
+								s_value = s_value.substr(0, s_value.size() - 2);
 
-                        if (e.boolean() == true)
-                            s_value = "true";
-                        else
-                            s_value = "false";
+						}
+						else if (e.type() == 9) { // type date
 
-                    }
-                    else if (!e.eoo()) {
+							ostringstream convert;
+							convert << e.date();
+							s_value = convert.str();
+							if (s_value.size() == 13)
+								// remove millionsecond to the epoch time stamp
+								s_value = s_value.substr(0, 10);
 
-                        s_value = e.toString(false);
+						}
+						else if (e.isBoolean()) {
 
-                        boost::replace_all(s_value, "\"", "'");
+							ostringstream convert;
 
-                        if (s_value.substr(0, 1) == "'" && s_value.substr(s_value.size() - 1, 1) == "'") {
+							if (e.boolean() == true)
+								s_value = "true";
+							else
+								s_value = "false";
 
-                            boost::replace_all(s_value, "'", "");
+						}
+						else if (!e.eoo()) {
 
-                        }
+							s_value = e.toString(false);
 
-                    }
-                    else {
+							boost::replace_all(s_value, "\"", "'");
 
-                        s_value = "";
+							if (s_value.substr(0, 1) == "'" && s_value.substr(s_value.size() - 1, 1) == "'") {
 
-                    }
+								boost::replace_all(s_value, "'", "");
 
-                    try {
-                        int v;
-                        v = boost::lexical_cast<int>(s_value);
+							}
 
-                        Term key_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_key + '"');
-                        Term value_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, s_value);
-                        out.push_back(registry.storeTerm(key_term));
-                        out.push_back(registry.storeTerm(value_term));
+						}
+						else {
 
-                    } catch (boost::bad_lexical_cast& e) {
+							s_value = "";
 
-                        Term key_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_key + '"');
-                        Term value_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_value + '"');
-                        out.push_back(registry.storeTerm(key_term));
-                        out.push_back(registry.storeTerm(value_term));
-                    }
-                    
-                } // end of for
+						}
 
-                answer.get().push_back(out);
+						try {
+							int v;
+							v = boost::lexical_cast<int>(s_value);
 
-            } // end of if - else
+							Term key_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_key + '"');
+							Term value_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, s_value);
+							out.push_back(registry.storeTerm(key_term));
+							out.push_back(registry.storeTerm(value_term));
 
-        } // end of retrieve function
+						} catch (boost::bad_lexical_cast& e) {
 
-    } // end of mongo
+							Term key_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_key + '"');
+							Term value_term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + s_value + '"');
+							out.push_back(registry.storeTerm(key_term));
+							out.push_back(registry.storeTerm(value_term));
+						}
+
+					} // end of for
+
+					answer.get().push_back(out);
+
+				} // end of if - else
+
+			} // end of retrieve function
+
+	} // end of mongo
 } // end of dlvhex
+

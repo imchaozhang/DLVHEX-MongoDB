@@ -125,7 +125,7 @@ LTLIBRARIES = $(plugin_LTLIBRARIES)
 libdlvhexplugin_mongo_la_LIBADD =
 am_libdlvhexplugin_mongo_la_OBJECTS = MongoPlugin.lo MongoQueryAtom.lo \
 	MongoInsertAtom.lo MongoArrayAtom.lo MongoJSONAtom.lo \
-	ConfigFile.lo
+	MongoMapReduceAtom.lo ConfigFile.lo
 libdlvhexplugin_mongo_la_OBJECTS =  \
 	$(am_libdlvhexplugin_mongo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -351,6 +351,7 @@ libdlvhexplugin_mongo_la_SOURCES = MongoPlugin.cpp \
 				   MongoInsertAtom.cpp \
 				   MongoArrayAtom.cpp \
 				   MongoJSONAtom.cpp \
+				   MongoMapReduceAtom.cpp \
 				   ConfigFile.cpp
 
 libdlvhexplugin_mongo_la_LDFLAGS = -version-info="" -avoid-version -module $(MONGO_LIBS)
@@ -437,6 +438,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MongoArrayAtom.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MongoInsertAtom.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MongoJSONAtom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MongoMapReduceAtom.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MongoPlugin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MongoQueryAtom.Plo@am__quote@
 

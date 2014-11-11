@@ -125,7 +125,7 @@ LTLIBRARIES = $(plugin_LTLIBRARIES)
 libdlvhexplugin_mongo_la_LIBADD =
 am_libdlvhexplugin_mongo_la_OBJECTS = MongoPlugin.lo MongoQueryAtom.lo \
 	MongoInsertAtom.lo MongoArrayAtom.lo MongoJSONAtom.lo \
-	ConfigFile.lo
+	MongoMapReduceAtom.lo ConfigFile.lo
 libdlvhexplugin_mongo_la_OBJECTS =  \
 	$(am_libdlvhexplugin_mongo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
@@ -351,6 +351,7 @@ libdlvhexplugin_mongo_la_SOURCES = MongoPlugin.cpp \
 				   MongoInsertAtom.cpp \
 				   MongoArrayAtom.cpp \
 				   MongoJSONAtom.cpp \
+				   MongoMapReduceAtom.cpp \
 				   ConfigFile.cpp
 
 libdlvhexplugin_mongo_la_LDFLAGS = -version-info="" -avoid-version -module $(MONGO_LIBS)
@@ -437,6 +438,7 @@ include ./$(DEPDIR)/ConfigFile.Plo
 include ./$(DEPDIR)/MongoArrayAtom.Plo
 include ./$(DEPDIR)/MongoInsertAtom.Plo
 include ./$(DEPDIR)/MongoJSONAtom.Plo
+include ./$(DEPDIR)/MongoMapReduceAtom.Plo
 include ./$(DEPDIR)/MongoPlugin.Plo
 include ./$(DEPDIR)/MongoQueryAtom.Plo
 

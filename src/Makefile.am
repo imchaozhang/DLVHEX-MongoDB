@@ -13,6 +13,7 @@ libdlvhexplugin_mongo_la_SOURCES = MongoPlugin.cpp \
 				   MongoInsertAtom.cpp \
 				   MongoArrayAtom.cpp \
 				   MongoJSONAtom.cpp \
+				   MongoMapReduceAtom.cpp \
 				   ConfigFile.cpp
 
 libdlvhexplugin_mongo_la_LDFLAGS =-version-info="" -avoid-version -module $(MONGO_LIBS)

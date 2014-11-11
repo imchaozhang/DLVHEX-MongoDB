@@ -48,7 +48,7 @@ namespace dlvhex {
             Registry &registry = *getRegistry();
 
             mongo::DBClientConnection c;
-            ConfigFile cfg("include/config.cfg");
+            ConfigFile cfg("/data/dlvhex-config/config.cfg");
             std::string connection = cfg.getValueOfKey("CONNECTION_STRING");
 
 

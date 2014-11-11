@@ -1,0 +1,1 @@
+success :- &mongo_insert["test.persons","name","adam","age","20","interest","CS"]().

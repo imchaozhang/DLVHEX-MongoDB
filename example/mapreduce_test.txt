@@ -1,0 +1,7 @@
+
+t(X) :- &mongo_query["test.people","{}","{}"](X).
+
+
+mr(X) :- &mongo_mapreduce["test.people", "function(){ emit(this.gender, 1);}", "function(gender,count){ return Array.sum(count);}"](X).
+
+result(P1,P2) :- &mongo_json[X,"_id;value"](N1,P1,N2,P2), mr(X).

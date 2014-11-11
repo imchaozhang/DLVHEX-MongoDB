@@ -1,8 +1,8 @@
 
-t(X) :- &mongo_query["test.foo","{}","rdfs:subPropertyOf.0.@id"](X).
-
 r(X):- &mongo_query["tutorial.persons", "{name:'Josh'}", "{}"](X).
 
-s(Y) :- &mongo_json[T](X,Y), r(T), X="grades".
+person(S,P,O) :- &sparql["PREFIX dc: <http://purl.org/dc/elements/1.1/> PREFIX ns: <http://example.org/ns#>",
+" <http://example/>",
+"$s ?p ?o",
+" { ?s ?p ?o}" ](S,P,O).
 
-w(X1,Y1) :- &mongo_array[T1](X1,Y1), s(T1).

@@ -37,11 +37,12 @@ using namespace mongo;
 namespace dlvhex {
     namespace mongo1 {
 
-        MongoQueryAtom::MongoQueryAtom() : PluginAtom("mongo_query", 1) {
+        MongoQueryAtom::MongoQueryAtom(int& i) : PluginAtom("mongo_query"+boost::lexical_cast<std::string>(i), 1) {
 
 	    addInputTuple();
-            setOutputArity(20);
+            setOutputArity(i);
         }
+
 
         void
         MongoQueryAtom::retrieve(const Query& query, Answer& answer) throw (PluginError) {

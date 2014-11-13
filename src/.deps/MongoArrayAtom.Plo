@@ -1017,12 +1017,42 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/numeric/ublas/detail/vector_assign.hpp \
  /usr/local/include/dlvhex2/Nogood.h \
  /usr/local/include/dlvhex2/SATSolver.h \
+ /usr/local/include/dlvhex2/ComponentGraph.h \
+ /usr/local/include/dlvhex2/DependencyGraph.h \
+ /usr/include/boost/graph/graph_traits.hpp \
+ /usr/include/boost/pending/property.hpp \
+ /usr/include/boost/pending/detail/property.hpp \
+ /usr/include/boost/type_traits/same_traits.hpp \
+ /usr/include/boost/graph/adjacency_list.hpp \
+ /usr/include/boost/unordered_set.hpp \
+ /usr/include/boost/unordered/unordered_set.hpp \
+ /usr/include/boost/unordered/unordered_set_fwd.hpp \
+ /usr/include/c++/4.8/ext/slist \
+ /usr/include/boost/graph/graph_mutability_traits.hpp \
+ /usr/include/boost/graph/graph_selectors.hpp \
+ /usr/include/boost/property_map/property_map.hpp \
+ /usr/include/boost/pending/cstddef.hpp \
+ /usr/include/boost/concept_archetype.hpp \
+ /usr/include/boost/property_map/vector_property_map.hpp \
+ /usr/include/boost/graph/detail/edge.hpp \
+ /usr/include/boost/graph/properties.hpp \
+ /usr/include/boost/graph/property_maps/constant_property_map.hpp \
+ /usr/include/boost/graph/property_maps/null_property_map.hpp \
+ /usr/include/boost/graph/named_graph.hpp \
+ /usr/include/boost/pending/container_traits.hpp \
+ /usr/include/boost/graph/detail/adjacency_list.hpp \
+ /usr/include/boost/range/irange.hpp \
+ /usr/include/boost/graph/graph_concepts.hpp \
+ /usr/include/boost/graph/numeric_values.hpp \
+ /usr/include/boost/graph/buffer_concepts.hpp \
+ /usr/include/boost/graph/detail/adj_list_edge_iterator.hpp \
+ /usr/include/boost/graph/adjacency_iterator.hpp \
+ /usr/local/include/dlvhex2/ExternalAtomEvaluationHeuristicsInterface.h \
  /usr/local/include/mongo/client/dbclient.h \
  /usr/local/include/mongo/config.h \
  /usr/local/include/mongo/client/redef_macros.h \
  /usr/local/include/mongo/client/autolib.h \
- /usr/local/include/mongo/client/connpool.h /usr/include/c++/4.8/stack \
- /usr/include/c++/4.8/bits/stl_stack.h \
+ /usr/local/include/mongo/client/dbclient_rs.h \
  /usr/local/include/mongo/client/dbclientinterface.h \
  /usr/include/boost/thread/locks.hpp \
  /usr/include/boost/thread/lock_algorithms.hpp \
@@ -1036,6 +1066,10 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/intrusive_ptr.hpp \
  /usr/include/boost/smart_ptr/intrusive_ptr.hpp \
  /usr/local/include/mongo/bson/bsonelement.h \
+ /usr/local/include/mongo/base/data_cursor.h \
+ /usr/local/include/mongo/base/data_view.h \
+ /usr/local/include/mongo/platform/endian.h \
+ /usr/local/include/mongo/platform/cstdint.h \
  /usr/local/include/mongo/bson/bsontypes.h \
  /usr/local/include/mongo/util/assert_util.h \
  /usr/local/include/mongo/base/status.h \
@@ -1046,46 +1080,16 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
  /usr/local/include/mongo/platform/atomic_intrinsics.h \
  /usr/local/include/mongo/platform/atomic_intrinsics_gcc_atomic.h \
  /usr/local/include/mongo/base/status-inl.h \
- /usr/local/include/mongo/bson/inline_decls.h \
- /usr/local/include/mongo/bson/oid.h \
- /usr/local/include/mongo/bson/util/misc.h \
- /usr/local/include/mongo/platform/cstdint.h \
- /usr/local/include/mongo/util/time_support.h \
- /usr/local/include/mongo/base/status_with.h \
- /usr/local/include/mongo/util/hex.h \
- /usr/local/include/mongo/bson/util/builder.h /usr/include/c++/4.8/cfloat \
- /usr/lib/gcc/x86_64-linux-gnu/4.8/include/float.h /usr/include/libio.h \
- /usr/include/_G_config.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h \
- /usr/local/include/mongo/platform/float_utils.h \
- /usr/local/include/mongo/util/bufreader.h \
- /usr/local/include/mongo/client/bulk_update_builder.h \
- /usr/local/include/mongo/client/bulk_upsert_builder.h \
- /usr/local/include/mongo/client/write_result.h \
- /usr/local/include/mongo/util/net/operation.h \
- /usr/local/include/mongo/client/exceptions.h \
- /usr/local/include/mongo/db/jsobj.h \
- /usr/local/include/mongo/bson/optime.h \
- /usr/include/boost/thread/condition.hpp \
- /usr/local/include/mongo/bson/bsonmisc.h \
- /usr/local/include/mongo/bson/bsonobjbuilder.h \
- /usr/local/include/mongo/base/parse_number.h \
- /usr/local/include/mongo/bson/bson_field.h \
- /usr/local/include/mongo/bson/bsonobjiterator.h \
- /usr/local/include/mongo/bson/bson-inl.h \
- /usr/local/include/mongo/bson/ordering.h \
- /usr/local/include/mongo/bson/bson_db.h \
- /usr/local/include/mongo/util/log.h \
- /usr/local/include/mongo/logger/log_component.h \
+ /usr/local/include/mongo/logger/log_severity.h \
+ /usr/local/include/mongo/logger/log_severity-inl.h \
  /usr/local/include/mongo/logger/logger.h \
  /usr/local/include/mongo/logger/message_log_domain.h \
  /usr/local/include/mongo/logger/log_domain.h \
  /usr/local/include/mongo/logger/appender.h \
- /usr/local/include/mongo/logger/log_severity.h \
- /usr/local/include/mongo/logger/log_severity-inl.h \
  /usr/local/include/mongo/logger/message_event.h \
+ /usr/local/include/mongo/logger/log_component.h \
+ /usr/local/include/mongo/util/time_support.h \
+ /usr/local/include/mongo/base/status_with.h \
  /usr/local/include/mongo/logger/log_manager.h \
  /usr/local/include/mongo/logger/component_message_log_domain.h \
  /usr/local/include/mongo/logger/log_component_settings.h \
@@ -1098,15 +1102,42 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/4.8/tr1/unordered_map.h \
  /usr/local/include/mongo/logger/logstream_builder.h \
  /usr/local/include/mongo/logger/labeled_level.h \
- /usr/local/include/mongo/logger/tee.h \
  /usr/local/include/mongo/util/concurrency/thread_name.h \
+ /usr/local/include/mongo/bson/oid.h \
+ /usr/local/include/mongo/bson/util/builder.h /usr/include/c++/4.8/cfloat \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/float.h /usr/include/libio.h \
+ /usr/include/_G_config.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h \
+ /usr/local/include/mongo/bson/inline_decls.h \
+ /usr/local/include/mongo/bson/timestamp.h \
+ /usr/local/include/mongo/bson/util/misc.h \
+ /usr/local/include/mongo/platform/float_utils.h \
+ /usr/local/include/mongo/client/bulk_update_builder.h \
+ /usr/local/include/mongo/client/bulk_upsert_builder.h \
+ /usr/local/include/mongo/client/write_result.h \
+ /usr/local/include/mongo/util/net/operation.h \
+ /usr/local/include/mongo/client/exceptions.h \
+ /usr/local/include/mongo/db/jsobj.h \
+ /usr/local/include/mongo/bson/bsonmisc.h \
+ /usr/local/include/mongo/bson/bsonobjbuilder.h \
+ /usr/local/include/mongo/base/parse_number.h \
+ /usr/local/include/mongo/bson/bson_field.h \
+ /usr/local/include/mongo/bson/bsonobjiterator.h \
+ /usr/local/include/mongo/bson/bson-inl.h \
+ /usr/local/include/mongo/bson/ordering.h \
+ /usr/local/include/mongo/bson/bson_db.h \
  /usr/local/include/mongo/client/index_spec.h \
  /usr/local/include/mongo/client/write_concern.h \
  /usr/local/include/mongo/client/write_options.h \
  /usr/local/include/mongo/stdx/functional.h \
  /usr/local/include/mongo/util/mongoutils/str.h \
  /usr/local/include/mongo/util/net/message.h \
+ /usr/local/include/mongo/base/encoded_value_storage.h \
  /usr/local/include/mongo/util/net/hostandport.h \
+ /usr/local/include/mongo/platform/hash_namespace.h \
+ /usr/include/c++/4.8/tr1/functional /usr/include/c++/4.8/tr1/tuple \
  /usr/local/include/mongo/util/net/sock.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/sys/uio.h \
@@ -1131,9 +1162,8 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/preprocessor/comparison/less_equal.hpp \
  /usr/include/boost/preprocessor/logical/not.hpp \
  /usr/include/boost/utility/identity_type.hpp \
- /usr/local/include/mongo/util/background.h \
- /usr/local/include/mongo/client/dbclient_rs.h \
  /usr/local/include/mongo/client/dbclientcursor.h \
+ /usr/include/c++/4.8/stack /usr/include/c++/4.8/bits/stl_stack.h \
  /usr/local/include/mongo/db/json.h \
  /usr/local/include/mongo/client/gridfs.h \
  /usr/include/boost/scoped_array.hpp \
@@ -1196,7 +1226,6 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/algorithm/string/sequence_traits.hpp \
  /usr/include/boost/algorithm/string/std/list_traits.hpp \
  /usr/include/boost/algorithm/string/std/slist_traits.hpp \
- /usr/include/c++/4.8/ext/slist \
  /usr/include/boost/algorithm/string/trim.hpp \
  /usr/include/boost/algorithm/string/detail/trim.hpp \
  /usr/include/boost/algorithm/string/classification.hpp \
@@ -3516,6 +3545,68 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 
 /usr/local/include/dlvhex2/SATSolver.h:
 
+/usr/local/include/dlvhex2/ComponentGraph.h:
+
+/usr/local/include/dlvhex2/DependencyGraph.h:
+
+/usr/include/boost/graph/graph_traits.hpp:
+
+/usr/include/boost/pending/property.hpp:
+
+/usr/include/boost/pending/detail/property.hpp:
+
+/usr/include/boost/type_traits/same_traits.hpp:
+
+/usr/include/boost/graph/adjacency_list.hpp:
+
+/usr/include/boost/unordered_set.hpp:
+
+/usr/include/boost/unordered/unordered_set.hpp:
+
+/usr/include/boost/unordered/unordered_set_fwd.hpp:
+
+/usr/include/c++/4.8/ext/slist:
+
+/usr/include/boost/graph/graph_mutability_traits.hpp:
+
+/usr/include/boost/graph/graph_selectors.hpp:
+
+/usr/include/boost/property_map/property_map.hpp:
+
+/usr/include/boost/pending/cstddef.hpp:
+
+/usr/include/boost/concept_archetype.hpp:
+
+/usr/include/boost/property_map/vector_property_map.hpp:
+
+/usr/include/boost/graph/detail/edge.hpp:
+
+/usr/include/boost/graph/properties.hpp:
+
+/usr/include/boost/graph/property_maps/constant_property_map.hpp:
+
+/usr/include/boost/graph/property_maps/null_property_map.hpp:
+
+/usr/include/boost/graph/named_graph.hpp:
+
+/usr/include/boost/pending/container_traits.hpp:
+
+/usr/include/boost/graph/detail/adjacency_list.hpp:
+
+/usr/include/boost/range/irange.hpp:
+
+/usr/include/boost/graph/graph_concepts.hpp:
+
+/usr/include/boost/graph/numeric_values.hpp:
+
+/usr/include/boost/graph/buffer_concepts.hpp:
+
+/usr/include/boost/graph/detail/adj_list_edge_iterator.hpp:
+
+/usr/include/boost/graph/adjacency_iterator.hpp:
+
+/usr/local/include/dlvhex2/ExternalAtomEvaluationHeuristicsInterface.h:
+
 /usr/local/include/mongo/client/dbclient.h:
 
 /usr/local/include/mongo/config.h:
@@ -3524,11 +3615,7 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 
 /usr/local/include/mongo/client/autolib.h:
 
-/usr/local/include/mongo/client/connpool.h:
-
-/usr/include/c++/4.8/stack:
-
-/usr/include/c++/4.8/bits/stl_stack.h:
+/usr/local/include/mongo/client/dbclient_rs.h:
 
 /usr/local/include/mongo/client/dbclientinterface.h:
 
@@ -3556,6 +3643,14 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 
 /usr/local/include/mongo/bson/bsonelement.h:
 
+/usr/local/include/mongo/base/data_cursor.h:
+
+/usr/local/include/mongo/base/data_view.h:
+
+/usr/local/include/mongo/platform/endian.h:
+
+/usr/local/include/mongo/platform/cstdint.h:
+
 /usr/local/include/mongo/bson/bsontypes.h:
 
 /usr/local/include/mongo/util/assert_util.h:
@@ -3576,75 +3671,9 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 
 /usr/local/include/mongo/base/status-inl.h:
 
-/usr/local/include/mongo/bson/inline_decls.h:
+/usr/local/include/mongo/logger/log_severity.h:
 
-/usr/local/include/mongo/bson/oid.h:
-
-/usr/local/include/mongo/bson/util/misc.h:
-
-/usr/local/include/mongo/platform/cstdint.h:
-
-/usr/local/include/mongo/util/time_support.h:
-
-/usr/local/include/mongo/base/status_with.h:
-
-/usr/local/include/mongo/util/hex.h:
-
-/usr/local/include/mongo/bson/util/builder.h:
-
-/usr/include/c++/4.8/cfloat:
-
-/usr/lib/gcc/x86_64-linux-gnu/4.8/include/float.h:
-
-/usr/include/libio.h:
-
-/usr/include/_G_config.h:
-
-/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio2.h:
-
-/usr/local/include/mongo/platform/float_utils.h:
-
-/usr/local/include/mongo/util/bufreader.h:
-
-/usr/local/include/mongo/client/bulk_update_builder.h:
-
-/usr/local/include/mongo/client/bulk_upsert_builder.h:
-
-/usr/local/include/mongo/client/write_result.h:
-
-/usr/local/include/mongo/util/net/operation.h:
-
-/usr/local/include/mongo/client/exceptions.h:
-
-/usr/local/include/mongo/db/jsobj.h:
-
-/usr/local/include/mongo/bson/optime.h:
-
-/usr/include/boost/thread/condition.hpp:
-
-/usr/local/include/mongo/bson/bsonmisc.h:
-
-/usr/local/include/mongo/bson/bsonobjbuilder.h:
-
-/usr/local/include/mongo/base/parse_number.h:
-
-/usr/local/include/mongo/bson/bson_field.h:
-
-/usr/local/include/mongo/bson/bsonobjiterator.h:
-
-/usr/local/include/mongo/bson/bson-inl.h:
-
-/usr/local/include/mongo/bson/ordering.h:
-
-/usr/local/include/mongo/bson/bson_db.h:
-
-/usr/local/include/mongo/util/log.h:
-
-/usr/local/include/mongo/logger/log_component.h:
+/usr/local/include/mongo/logger/log_severity-inl.h:
 
 /usr/local/include/mongo/logger/logger.h:
 
@@ -3654,11 +3683,13 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 
 /usr/local/include/mongo/logger/appender.h:
 
-/usr/local/include/mongo/logger/log_severity.h:
-
-/usr/local/include/mongo/logger/log_severity-inl.h:
-
 /usr/local/include/mongo/logger/message_event.h:
+
+/usr/local/include/mongo/logger/log_component.h:
+
+/usr/local/include/mongo/util/time_support.h:
+
+/usr/local/include/mongo/base/status_with.h:
 
 /usr/local/include/mongo/logger/log_manager.h:
 
@@ -3684,9 +3715,61 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 
 /usr/local/include/mongo/logger/labeled_level.h:
 
-/usr/local/include/mongo/logger/tee.h:
-
 /usr/local/include/mongo/util/concurrency/thread_name.h:
+
+/usr/local/include/mongo/bson/oid.h:
+
+/usr/local/include/mongo/bson/util/builder.h:
+
+/usr/include/c++/4.8/cfloat:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/float.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/local/include/mongo/bson/inline_decls.h:
+
+/usr/local/include/mongo/bson/timestamp.h:
+
+/usr/local/include/mongo/bson/util/misc.h:
+
+/usr/local/include/mongo/platform/float_utils.h:
+
+/usr/local/include/mongo/client/bulk_update_builder.h:
+
+/usr/local/include/mongo/client/bulk_upsert_builder.h:
+
+/usr/local/include/mongo/client/write_result.h:
+
+/usr/local/include/mongo/util/net/operation.h:
+
+/usr/local/include/mongo/client/exceptions.h:
+
+/usr/local/include/mongo/db/jsobj.h:
+
+/usr/local/include/mongo/bson/bsonmisc.h:
+
+/usr/local/include/mongo/bson/bsonobjbuilder.h:
+
+/usr/local/include/mongo/base/parse_number.h:
+
+/usr/local/include/mongo/bson/bson_field.h:
+
+/usr/local/include/mongo/bson/bsonobjiterator.h:
+
+/usr/local/include/mongo/bson/bson-inl.h:
+
+/usr/local/include/mongo/bson/ordering.h:
+
+/usr/local/include/mongo/bson/bson_db.h:
 
 /usr/local/include/mongo/client/index_spec.h:
 
@@ -3700,7 +3783,15 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 
 /usr/local/include/mongo/util/net/message.h:
 
+/usr/local/include/mongo/base/encoded_value_storage.h:
+
 /usr/local/include/mongo/util/net/hostandport.h:
+
+/usr/local/include/mongo/platform/hash_namespace.h:
+
+/usr/include/c++/4.8/tr1/functional:
+
+/usr/include/c++/4.8/tr1/tuple:
 
 /usr/local/include/mongo/util/net/sock.h:
 
@@ -3752,11 +3843,11 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 
 /usr/include/boost/utility/identity_type.hpp:
 
-/usr/local/include/mongo/util/background.h:
-
-/usr/local/include/mongo/client/dbclient_rs.h:
-
 /usr/local/include/mongo/client/dbclientcursor.h:
+
+/usr/include/c++/4.8/stack:
+
+/usr/include/c++/4.8/bits/stl_stack.h:
 
 /usr/local/include/mongo/db/json.h:
 
@@ -3887,8 +3978,6 @@ MongoArrayAtom.lo: MongoArrayAtom.cpp /usr/include/stdc-predef.h \
 /usr/include/boost/algorithm/string/std/list_traits.hpp:
 
 /usr/include/boost/algorithm/string/std/slist_traits.hpp:
-
-/usr/include/c++/4.8/ext/slist:
 
 /usr/include/boost/algorithm/string/trim.hpp:
 

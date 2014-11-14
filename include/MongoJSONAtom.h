@@ -31,7 +31,7 @@ namespace dlvhex {
         {
 		public:
 
-            MongoJSONAtom();
+            MongoJSONAtom(int& i);
          
             virtual void
             retrieve(const Query& query, Answer& answer) throw (PluginError);

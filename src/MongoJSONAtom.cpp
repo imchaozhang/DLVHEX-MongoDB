@@ -36,11 +36,11 @@ using namespace mongo;
 namespace dlvhex {
 	namespace mongo1 {
 
-		MongoJSONAtom::MongoJSONAtom() : PluginAtom("mongo_json", 1) {
+		MongoJSONAtom::MongoJSONAtom(int& i) : PluginAtom("mongo_json"+boost::lexical_cast<std::string>(i), 1) {
 
 			addInputConstant();
 			addInputConstant();
-			setOutputArity(20);
+			setOutputArity(i);
 		}
 
 		void
@@ -269,4 +269,5 @@ namespace dlvhex {
 
 	} // end of mongo
 } // end of dlvhex
+
 

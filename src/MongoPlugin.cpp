@@ -38,15 +38,15 @@ namespace dlvhex {
       {
           std::vector<PluginAtomPtr> ret;
           
-
-
           int max_index = 10;
           for(int i=1;i<=max_index;i++){
           ret.push_back(PluginAtomPtr(new MongoQueryAtom(i), PluginPtrDeleter<PluginAtom>()));
+          ret.push_back(PluginAtomPtr(new MongoJSONAtom(i), PluginPtrDeleter<PluginAtom>()));
           }
+          
           ret.push_back(PluginAtomPtr(new MongoInsertAtom, PluginPtrDeleter<PluginAtom>()));
           ret.push_back(PluginAtomPtr(new MongoArrayAtom, PluginPtrDeleter<PluginAtom>()));
-          ret.push_back(PluginAtomPtr(new MongoJSONAtom, PluginPtrDeleter<PluginAtom>()));
+
           ret.push_back(PluginAtomPtr(new MongoMapReduceAtom, PluginPtrDeleter<PluginAtom>()));          
 
           
@@ -71,3 +71,4 @@ void * PLUGINIMPORTFUNCTION()
 {
 	return reinterpret_cast<void*>(& dlvhex::mongo1::theMongoPlugin);
 }
+

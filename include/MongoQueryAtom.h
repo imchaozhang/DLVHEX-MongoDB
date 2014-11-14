@@ -32,6 +32,10 @@ namespace dlvhex {
 		public:
 
             MongoQueryAtom(int& i);
+	
+	virtual
+	~MongoQueryAtom();
+
          
             virtual void
             retrieve(const Query& query, Answer& answer) throw (PluginError);

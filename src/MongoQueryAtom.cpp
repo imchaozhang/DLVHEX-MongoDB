@@ -43,7 +43,10 @@ namespace dlvhex {
             setOutputArity(i);
         }
 
-
+        MongoQueryAtom::~MongoQueryAtom()
+        {
+        
+        }
         void
         MongoQueryAtom::retrieve(const Query& query, Answer& answer) throw (PluginError) {
             Registry &registry = *getRegistry();

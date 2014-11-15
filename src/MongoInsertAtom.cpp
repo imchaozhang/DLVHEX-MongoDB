@@ -47,7 +47,18 @@ namespace dlvhex{
         MongoInsertAtom::retrieve(const Query& query, Answer & answer) throw(PluginError) {
             Registry &registry = *getRegistry();
 
-            mongo::DBClientConnection c;
+	mongo::client::GlobalInstance instance;
+    	if (!instance.initialized()) 
+	{
+        	std::cout << "failed to initialize the client driver: " << instance.status() << endl;
+    	}		
+
+
+
+
+
+
+        mongo::DBClientConnection c;
 		ConfigFile cfg("/data/dlvhex-config/config.cfg");
             std::string connection = cfg.getValueOfKey("CONNECTION_STRING");
 
@@ -80,7 +91,7 @@ namespace dlvhex{
             const Term& dbc = registry.terms.getByID(query.input[0]);
 
             if (!dbc.isQuotedString()) {
-                throw PluginError("Wrong input argument type for input 1, need to be string");
+                throw PluginError(" Wrong input argument type for input 1 , need to be string");
             }
 
             std::string s_dbc = dbc.getUnquotedString();
@@ -100,7 +111,7 @@ namespace dlvhex{
 
                 } else {
 
-                    throw PluginError("Wrong input argument type for input: " + i);
+                    throw PluginError(" Wrong input argument type for input: " + i);
 
                 }
 
@@ -157,7 +168,10 @@ namespace dlvhex{
 
             BSONObj p = b.obj();
 
-            c.insert(s_dbc, p);
+
+
+
+	    c.insert(s_dbc, p);
 
             // check if the insertion is successful     
             std::string e = c.getLastError();
@@ -166,9 +180,22 @@ namespace dlvhex{
             }
 
             Tuple out;
+	
+	//std::string ino = p.toString();
+	//boost::replace_all(ino, "\"", "'");
+	//if (ino.substr(0, 1) == "'" && ino.substr(ino.size() - 1, 1) == "'") 
+	//{
+	//boost::replace_all(ino, "'", "");					
+	//	}
 
-            //Term term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT, '"' + p.toString() + '"');
-            answer.get().push_back(out);
+	//boost::replace_all(ino, ",", ";");
+
+
+
+          //  Term term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT,  '"'+ ino +'"');
+        //   out.push_back(registry.storeTerm(term));
+		
+		 answer.get().push_back(out);
 
 
         } // end of retrieve function

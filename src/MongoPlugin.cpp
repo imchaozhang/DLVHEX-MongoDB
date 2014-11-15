@@ -38,7 +38,7 @@ namespace dlvhex {
       {
           std::vector<PluginAtomPtr> ret;
           
-          int max_index = 10;
+          int max_index = 20;
           for(int i=1;i<=max_index;i++){
           ret.push_back(PluginAtomPtr(new MongoQueryAtom(i), PluginPtrDeleter<PluginAtom>()));
           ret.push_back(PluginAtomPtr(new MongoJSONAtom(i), PluginPtrDeleter<PluginAtom>()));

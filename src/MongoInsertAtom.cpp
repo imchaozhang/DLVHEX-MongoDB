@@ -40,7 +40,7 @@ namespace dlvhex{
         MongoInsertAtom::MongoInsertAtom() : PluginAtom("mongo_insert", 1) {
 
             addInputTuple();
-            setOutputArity(0);
+            setOutputArity(1);
         }
 
         void
@@ -181,19 +181,19 @@ namespace dlvhex{
 
             Tuple out;
 	
-	//std::string ino = p.toString();
-	//boost::replace_all(ino, "\"", "'");
-	//if (ino.substr(0, 1) == "'" && ino.substr(ino.size() - 1, 1) == "'") 
-	//{
-	//boost::replace_all(ino, "'", "");					
-	//	}
+	std::string ino = p.toString();
+	boost::replace_all(ino, "\"", "'");
+	if (ino.substr(0, 1) == "'" && ino.substr(ino.size() - 1, 1) == "'") 
+	{
+	boost::replace_all(ino, "'", "");					
+		}
 
 	//boost::replace_all(ino, ",", ";");
 
 
 
-          //  Term term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT,  '"'+ ino +'"');
-        //   out.push_back(registry.storeTerm(term));
+         Term term(ID::MAINKIND_TERM | ID::SUBKIND_TERM_CONSTANT,  '"'+ ino +'"');
+           out.push_back(registry.storeTerm(term));
 		
 		 answer.get().push_back(out);
 

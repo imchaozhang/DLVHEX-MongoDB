@@ -500,7 +500,7 @@ configure:11784: checking how to hardcode library paths into programs
 configure:11809: result: immediate
 configure:11903: checking for shl_load
 configure:11903: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccF8xe8G.o: In function `main':
+/tmp/ccjcAnUK.o: In function `main':
 /home/czhang72/Download/DLVHEX-MongoDB/conftest.c:68: undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:11903: $? = 1
@@ -634,7 +634,7 @@ configure: failed program was:
 configure:11941: result: no
 configure:11946: checking for dlopen
 configure:11946: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccXnF02R.o: In function `main':
+/tmp/cct9zehS.o: In function `main':
 /home/czhang72/Download/DLVHEX-MongoDB/conftest.c:68: undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:11946: $? = 1
@@ -721,7 +721,7 @@ configure:12186: $? = 0
 configure:12204: result: yes
 configure:12209: checking whether a statically linked program can dlopen itself
 configure:12289: gcc -o conftest -g -O2  -DHAVE_DLFCN_H  -Wl,--export-dynamic -static conftest.c -ldl  >&5
-/tmp/ccfe2ol5.o: In function `main':
+/tmp/ccNATmL9.o: In function `main':
 /home/czhang72/Download/DLVHEX-MongoDB/configure:12268: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
 /usr/bin/ld: dynamic STT_GNU_IFUNC symbol `strcmp' with pointer equality in `/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/libc.a(strcmp.o)' can not be used when making an executable; recompile with -fPIE and relink with -pie
 collect2: error: ld returned 1 exit status
@@ -1094,7 +1094,7 @@ lt_cv_to_tool_file_cmd=func_convert_file_noop
 pkg_cv_DLVHEX_BINDIR=/usr/local/bin
 pkg_cv_DLVHEX_CFLAGS='-pthread -I/usr/local/include -I/usr/local/include/dlvhex2/bm3.7.0/  '
 pkg_cv_DLVHEX_LIBS='-Wl,-R,/usr/local/lib -pthread -L/usr/local/lib -ldlvhex2-base -ldlvhex2-aspsolver -lcurl -lboost_thread -lboost_system  '
-pkg_cv_DLVHEX_SYSPLUGINDIR=/usr/local/lib/dlvhex/plugins
+pkg_cv_DLVHEX_SYSPLUGINDIR=/usr/local/lib/dlvhex2/plugins
 pkg_cv_DLVHEX_USERPLUGINDIR=.dlvhex2/plugins
 
 ## ----------------- ##
@@ -1137,7 +1137,7 @@ DLVHEX_ABI_VERSION_MINOR='0'
 DLVHEX_BINDIR='/usr/local/bin'
 DLVHEX_CFLAGS='-pthread -I/usr/local/include -I/usr/local/include/dlvhex2/bm3.7.0/  '
 DLVHEX_LIBS='-Wl,-R,/usr/local/lib -pthread -L/usr/local/lib -ldlvhex2-base -ldlvhex2-aspsolver -lcurl -lboost_thread -lboost_system  '
-DLVHEX_SYSPLUGINDIR='/usr/local/lib/dlvhex/plugins'
+DLVHEX_SYSPLUGINDIR='/usr/local/lib/dlvhex2/plugins'
 DLVHEX_USERPLUGINDIR='.dlvhex2/plugins'
 DSYMUTIL=''
 DUMPBIN=''
@@ -1238,7 +1238,7 @@ mandir='${datarootdir}/man'
 mkdir_p='$(MKDIR_P)'
 oldincludedir='/usr/include'
 pdfdir='${docdir}'
-plugindir='/usr/local/lib/dlvhex/plugins'
+plugindir='/usr/local/lib/dlvhex2/plugins'
 prefix='/usr/local'
 program_transform_name='s,x,x,'
 psdir='${docdir}'

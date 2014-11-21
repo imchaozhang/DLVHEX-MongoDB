@@ -24,6 +24,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <stdlib.h> 
 
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>
@@ -72,6 +73,12 @@ namespace dlvhex {
             	throw PluginError("The input tuple should have 3 parameters at least");
             
             }
+			
+            if(arity > 13) {
+            
+            	throw PluginError("Cannot have input parameters more than 10");
+            
+            }
 
 
             const Term& dbc = registry.terms.getByID(query.input[0]);
@@ -98,11 +105,14 @@ namespace dlvhex {
             std::string s_jpattern = jpattern.getUnquotedString();
             std::string s_output = output.getUnquotedString();
 
-
+			// Add INPUT parameter into a stream array, the maximum size of the array will be 10
+			
+			std::string value_input_array[10];
+			
 	    for (int i = 3; i < arity; i++) {
 	    
 	    	ID id_input = query.input[i];
-	    	std:stringstream value_input;
+	    	std::stringstream value_input;
 	    	
 	    	
                 if (id_input.isConstantTerm()) {
@@ -121,23 +131,43 @@ namespace dlvhex {
                	throw PluginError("Wrong input argument type for input" + (i+1));
                
                }
+			   
+			   value_input_array[i-3] = value_input.str();
+ 
+   	    }// end for
+            
+			
+			   // find the index of $INPUT	   
                
+               if(arity>3 && arity < 14 && s_jpattern.find("$INPUT_") == -1) {
                
-               if(s_jpattern.find("$INPUT") == -1) {
-               
-               	throw PluginError("The query pattern needs to have \"$INPUT\" to represent the input element");
-               
-               
+               	throw PluginError("The query pattern needs to have \"$INPUT_N\" to represent the input element; N = 0 ... 9");
+                   
                }
-               
+			   
                else {
-               	// the $INPUT should be quoted with '' if it is an string
-               	boost::replace_first(s_jpattern,"$INPUT",value_input.str());
+				   
+				   int i = 0;
+				   
+				   while(i < s_jpattern.length() && s_jpattern.find("$INPUT_") != -1){
+				
+				   i = static_cast<int>(s_jpattern.find("$INPUT_"));
+				   
+				   std::stringstream stream_temp;
+				   
+				   stream_temp << s_jpattern[i+7];
+				   
+				   int s_jpattern_index; 
+				   
+				   stream_temp >> s_jpattern_index;
+				   
+				   
+				   s_jpattern.replace(s_jpattern.find("$INPUT_"),8,value_input_array[s_jpattern_index]);			   
                 
-               }
-               
-	    
-	    }// end for
+               }//end of while loop
+			   
+		   }//end of if-else
+
 
 
             if (s_output == "") {

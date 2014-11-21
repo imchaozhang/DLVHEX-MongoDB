@@ -1,0 +1,4 @@
+n("adam").
+a(20).
+
+result(Name,Age) :- &mongo_query2["test.persons","{age:{$gte:$INPUT_0},age:{$lte:$INPUT_0},name:'$INPUT_1'}","name;age",INPUT0,INPUT1](Name,Age),n(INPUT1),a(INPUT0).

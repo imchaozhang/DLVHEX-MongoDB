@@ -41,18 +41,19 @@ namespace dlvhex{
 
             addInputTuple();
             setOutputArity(1);
+	mongo::client::GlobalInstance instance;
+        if (!instance.initialized())
+        {
+
+        instance.shutdown();
+        std::cout << "failed to initialize the client driver: " << instance.status() << endl;
+        }
+
         }
 
         void
         MongoInsertAtom::retrieve(const Query& query, Answer & answer) throw(PluginError) {
             Registry &registry = *getRegistry();
-
-	mongo::client::GlobalInstance instance;
-    	if (!instance.initialized()) 
-	{
-        	std::cout << "failed to initialize the client driver: " << instance.status() << endl;
-    	}		
-
 
 
 
